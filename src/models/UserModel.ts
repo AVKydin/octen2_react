@@ -1,4 +1,4 @@
-export interface IUserProps {
+export interface UserModel {
     id: number,
     firstName: string,
     lastName: string,
@@ -59,3 +59,4 @@ export interface IUserProps {
     ssn?: string,
     userAgent?: string
 }
+

@@ -1,19 +1,27 @@
 import React, {FC} from 'react';
-import {IUserProps} from "../../models/User";
+import {UserModel} from "../../models/UserModel";
 
+interface IProps{
+    user: UserModel
+}
 
-export type IUserType = IUserProps & {children?:React.ReactNode}
+type IPropsType = IProps & {children?:React.ReactNode} & { elevator?:(id:number) =>void }
 
-const User:FC<IUserType> = ({id, firstName, lastName, email, image}) => {
+const User:FC<IPropsType> = ({user, elevator}) => {
 
 
 
     return (
         <div>
-            <h4>{id}</h4>
-            <h2>{firstName} {lastName}</h2>
-            <p>{email}</p>
-            <img src={image} alt={firstName}/>
+            <h4>{user.id}</h4>
+            <h2>{user.firstName} {user.lastName}</h2>
+            <p>{user.email}</p>
+            <img src={user.image} alt={user.firstName}/>
+            <button onClick={()=>{
+                if(elevator){
+                    elevator(user.id)
+                }
+            }}>posts</button>
         </div>
     );
 };
