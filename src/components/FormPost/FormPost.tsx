@@ -41,7 +41,7 @@ const FormPost = () => {
                     errors.userId && <span>{errors.userId.message}</span>
                 }
                 <br/>
-                <button>Send</button>
+                <button disabled={!isValid}>Send</button>
             </form>
         </div>
     );
