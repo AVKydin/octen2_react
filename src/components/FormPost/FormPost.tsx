@@ -1,32 +1,45 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
-import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
-import {isVisible} from "@testing-library/user-event/dist/utils";
+import {joiResolver} from "@hookform/resolvers/joi";
+import {postValidator} from "../../validators/postValidator";
+import {IPostModel} from "../../models/IPostModel";
+import {postPost} from "../../services/sendPost.service";
 
-interface IPostProps {
-    userId: number,
-    title: string,
-    body: string
-}
+
 
 const FormPost = () => {
 
-    let {register, handleSubmit, formState:{errors, isValid}} = useForm<IPostProps>()
+    let {
+        register,
+        handleSubmit,
+        formState:{errors, isValid},
+        reset
+    } = useForm<IPostModel>({mode: "all", resolver: joiResolver(postValidator)})
 
-    const send = (formValues:IPostProps) =>{
-
+    const send = (formValues:IPostModel) =>{
+        console.log(formValues)
+        const req = postPost(formValues).then(value => console.log(value.data))
+        reset()
     }
 
 
     return (
         <div>
             <form onSubmit={handleSubmit(send)}>
-                <input type="text" {...register("title")}/>
+                <input type="text" {...register("title")} placeholder="Enter title"/>
+                {
+                    errors.title && <span>{errors.title.message}</span>
+                }
                 <br/>
-                <input type="text" {...register("body")}/>
+                <input type="text" {...register("body")} placeholder="Enter body"/>
+                {
+                    errors.body && <span>{errors.body.message}</span>
+                }
                 <br/>
-                <input type="text" {...register("userId")}/>
+                <input type="text" {...register("userId")} placeholder="Enter userId"/>
+                {
+                    errors.userId && <span>{errors.userId.message}</span>
+                }
                 <br/>
                 <button>Send</button>
             </form>
