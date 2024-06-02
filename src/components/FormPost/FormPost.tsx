@@ -1,4 +1,8 @@
-import React, {FormEvent, useState} from 'react';
+import React from 'react';
+import {useForm} from "react-hook-form";
+import {Simulate} from "react-dom/test-utils";
+import error = Simulate.error;
+import {isVisible} from "@testing-library/user-event/dist/utils";
 
 interface IPostProps {
     userId: number,
@@ -8,23 +12,22 @@ interface IPostProps {
 
 const FormPost = () => {
 
-    const [form, setForm] = useState<IPostProps>({userId: 1, body:"cvxvx", title:'rqee'})
+    let {register, handleSubmit, formState:{errors, isValid}} = useForm<IPostProps>()
 
-    const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
+    const send = (formValues:IPostProps) =>{
+
     }
 
-    const handleChange = (e:FormEvent<HTMLInputElement>) => {
-        const input = e.target as HTMLInputElement;
-        setForm({...form, [input.name]: input.value})
-    }
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <input type="text" value={form.title} onChange={handleChange}/>
-                <input type="text" value={form.userId} onChange={handleChange}/>
-                <input type="text" value={form.body} onChange={handleChange}/>
+            <form onSubmit={handleSubmit(send)}>
+                <input type="text" {...register("title")}/>
+                <br/>
+                <input type="text" {...register("body")}/>
+                <br/>
+                <input type="text" {...register("userId")}/>
+                <br/>
                 <button>Send</button>
             </form>
         </div>
