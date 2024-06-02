@@ -1,5 +1,5 @@
 import axios, {AxiosResponse} from "axios";
-import {IPostModel, IPostModelRequest} from "../models/IPostModel";
+import {IPostModel, IPostModelResponse} from "../models/IPostModel";
 
 let axiosInstance = axios.create({
     baseURL: 'https://jsonplaceholder.typicode.com',
@@ -8,8 +8,8 @@ let axiosInstance = axios.create({
     }
 })
 
-const postPost = async (formValues:IPostModel):Promise<AxiosResponse<IPostModelRequest>> =>{
-    return await axiosInstance.post('/posts', formValues)
+const postPost = (formValues:IPostModel):Promise<AxiosResponse<IPostModelResponse>> =>{
+    return axiosInstance.post('/posts', formValues)
 }
 
 export {

@@ -18,7 +18,7 @@ const FormPost = () => {
 
     const send = (formValues:IPostModel) =>{
         console.log(formValues)
-        const req = postPost(formValues).then(value => console.log(value.data))
+        const res = postPost(formValues).then(value => console.log(value.data))
         reset()
     }
 

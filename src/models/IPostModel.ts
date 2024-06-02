@@ -4,4 +4,4 @@ export interface IPostModel {
     body: string
 }
 
-export type IPostModelRequest = IPostModel & {id:number}
+export type IPostModelResponse = IPostModel & {id:number}
