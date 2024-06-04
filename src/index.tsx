@@ -5,7 +5,9 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-const router = createBrowserRouter();
+const router = createBrowserRouter(
+
+);
 root.render(
         <RouterProvider router={router}></RouterProvider>
 );
