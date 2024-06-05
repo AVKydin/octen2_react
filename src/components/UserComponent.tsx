@@ -1,13 +1,16 @@
 import React, {FC} from 'react';
 import {IUserModel} from "../models/IUserModel";
 
+interface IProps{
+    user: IUserModel
+}
 
-const UserComponent:FC<IUserModel> = ({userName, name, id}) => {
+const UserComponent:FC<IProps> = ({user}) => {
     return (
         <div>
-            <span>{id}</span>
-            <span>{name}</span>
-            <span>{userName}</span>
+            <span>{user.id} - </span>
+            <span>{user.name} - </span>
+            <span>{user.username}</span>
         </div>
     );
 };

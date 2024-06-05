@@ -13,14 +13,13 @@ const UsersComponent:FC = () => {
 
     useEffect(()=>{
         userApiService.getAllUsers().then(({data})=>setUsers(data))
-    })
+    }, [])
 
     return (
         <div>
             {
-                users.map(user=>
-                    // <UserComponent key={user.id} user={user}/>
-                    <div>{user.userName}</div>
+                users?.map(user=>
+                     <UserComponent key={user.id} user={user}/>
                 )
             }
         </div>
