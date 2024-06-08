@@ -3,9 +3,6 @@ import {userApiService} from "../services/api.services";
 import {IUserModel} from "../models/IUserModel";
 import UserComponent from "./UserComponent";
 
-// interface IUsersProps{
-//     users: IUserModel
-// }
 
 const UsersComponent:FC = () => {
 

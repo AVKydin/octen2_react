@@ -1,15 +1,12 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC} from 'react';
 import {IPostModel} from "../models/IPostModel";
-import {userApiService} from "../services/api.services";
 import PostComponent from "./PostComponent";
 
-const PostsComponent:FC = () => {
+interface IProps {
+    posts: IPostModel[]
+}
 
-    const [posts, setPosts] = useState<IPostModel[]>([])
-
-    useEffect(() => {
-        userApiService.getAllPosts().then(({data}) => setPosts(data))
-    }, []);
+const PostsComponent:FC<IProps> = ({posts}) => {
 
     return (
         <div>

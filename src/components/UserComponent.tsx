@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import {IUserModel} from "../models/IUserModel";
+import {Link} from "react-router-dom";
 
 interface IProps{
     user: IUserModel
@@ -8,9 +9,11 @@ interface IProps{
 const UserComponent:FC<IProps> = ({user}) => {
     return (
         <div>
-            <span>{user.id} - </span>
-            <span>{user.name} - </span>
-            <span>{user.username}</span>
+            <Link to={user.id.toString()}>
+                <span>{user.id} - </span>
+                <span>{user.name} - </span>
+                <span>{user.username}</span>
+            </Link>
         </div>
     );
 };
