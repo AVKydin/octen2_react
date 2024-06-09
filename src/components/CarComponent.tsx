@@ -1,9 +1,17 @@
-import React from 'react';
+import React, {FC} from 'react';
+import {ICarWithAuth} from "../models/ICarWithAuth";
 
-const CarComponent = () => {
+interface IProps {
+    car: ICarWithAuth
+}
+
+const CarComponent:FC<IProps> = ({car}) => {
+
     return (
         <div>
-            CarComponent
+            <hr/>
+            <p>{car.brand} - {car.year} - {car.price}</p>
+            <hr/>
         </div>
     );
 };
