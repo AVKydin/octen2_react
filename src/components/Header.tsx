@@ -5,11 +5,9 @@ const Header:FC = () => {
     return (
         <div>
             <hr/>
-            <Link to="users">users</Link>
+            <Link to="/">Login page</Link>
             <br/>
-            <Link to="posts">posts</Link>
-            <br/>
-            <Link to="comments">comments</Link>
+            <Link to="cars">cars</Link>
             <hr/>
         </div>
     );
