@@ -12,6 +12,7 @@ const CarComponent:FC<IProps> = ({car}) => {
             <hr/>
             <p>{car.brand} - {car.year} - {car.price}</p>
             <hr/>
+
         </div>
     );
 };

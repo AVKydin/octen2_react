@@ -43,20 +43,18 @@ const authService = {
 }
 
 const carService = {
-    getAllCars: async () => {
+    getAllCars: async (page: string) => {
         try {
-            const res = await axiosInstance.get<ICarModel>('/cars');
-
+            const res = await axiosInstance.get<ICarModel>('/cars', {params:{page: page}});
             return res.data;
         } catch (e) {
             const axiosError = e as AxiosError;
             if(axiosError?.response?.status === 401) {
                 const refreshToken = retriveLocalStorageData<IToken>('tokenPair').refresh;
                 await authService.refresh(refreshToken);
-                await carService.getAllCars();
+                await carService.getAllCars(page);
             }
         }
-
     }
 }
 
