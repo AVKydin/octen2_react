@@ -43,7 +43,7 @@ const authService = {
 }
 
 const carService = {
-    getAllCars: async ()=> {
+    getAllCars: async (): Promise<ICarModel>=> {
         try {
             const res = await axiosInstance.get<ICarModel>('/cars');
 
