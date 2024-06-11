@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import {IPaginatedPageModel} from "../models/IPaginatedPageModel";
 
+
 interface IProps {
     onChangePage: (action: string) => void;
     prev: IPaginatedPageModel | null;
@@ -9,13 +10,17 @@ interface IProps {
 
 const PaginationComponent:FC<IProps> = ({onChangePage, prev, next}) => {
 
+
+
+
+
     return (
         <div>
             <button onClick={() => {
                 onChangePage('prev')
             }} disabled={!prev}>prev</button>
             <button onClick={() => {
-                onChangePage('ne[t')
+                onChangePage('next')
             }} disabled={!next}>next</button>
         </div>
     );

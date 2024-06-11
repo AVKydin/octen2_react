@@ -7,7 +7,7 @@ import {useSearchParams} from "react-router-dom";
 
 const CarsPage = () => {
 
-    const [query, setQuery] = useSearchParams({page: "1"});
+    const [query, setQuery] = useSearchParams({page: '1'});
 
     const [carsPaginationObject, setCarsPaginationObject] = useState<ICarModel>({
         items: [],
@@ -18,13 +18,12 @@ const CarsPage = () => {
     })
 
         useEffect(() => {
-                carService.getAllCars(query.get("page") || '1').then(value => {
+                carService.getAllCars(query.get('page') || '1').then(value => {
                     if (value) {
                         setCarsPaginationObject(value)
                     }
                 })
         }, [query]);
-
 
     const onChangePage = (action: string) => {
         switch (action) {

@@ -52,7 +52,7 @@ const carService = {
             if(axiosError?.response?.status === 401) {
                 const refreshToken = retriveLocalStorageData<IToken>('tokenPair').refresh;
                 await authService.refresh(refreshToken);
-                await carService.getAllCars(page);
+                // await carService.getAllCars(page);
             }
         }
     }
