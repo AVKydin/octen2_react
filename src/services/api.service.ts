@@ -43,9 +43,10 @@ const authService = {
 }
 
 const carService = {
-    getAllCars: async (page: string) => {
+    getAllCars: async (page: string): Promise<ICarModel | undefined> => {
         try {
             const res = await axiosInstance.get<ICarModel>('/cars', {params:{page: page}});
+            console.log(res.data)
             return res.data;
         } catch (e) {
             const axiosError = e as AxiosError;
