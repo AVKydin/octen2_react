@@ -1,7 +1,6 @@
 import React from 'react';
 
-const UserPostsPage = () => {
-
+const PostComponent = () => {
     return (
         <div>
 
@@ -9,4 +8,4 @@ const UserPostsPage = () => {
     );
 };
 
-export default UserPostsPage;
+export default PostComponent;
