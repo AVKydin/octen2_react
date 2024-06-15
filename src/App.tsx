@@ -3,7 +3,7 @@ import './App.css';
 import {Outlet} from "react-router-dom";
 import HeaderComponent from "./components/HeaderComponent";
 import {postService, userService} from "./services/api.service";
-import {Context, defaultValue} from "./context/ContextProvider";
+import {Context} from "./context/ContextProvider";
 import {IUserModel} from "./models/IUserModel";
 import {IPostModel} from "./models/IPostModel";
 
@@ -12,25 +12,36 @@ const App = () => {
 
     const [users, setUsers] = useState<IUserModel[]>([]);
     const [posts, setPosts] = useState<IPostModel[]>([]);
+    const [favoriteUserState, setFavoriteUserState] = useState<IUserModel | null>(null)
 
     useEffect(() => {
         userService.getUsers().then(user => setUsers(user.data));
         postService.getUsers().then(post => setPosts(post.data))
     }, []);
 
+    const setFavoriteUser = (obj: IUserModel   ) =>{
+        setFavoriteUserState(obj)
+    }
+
   return (
       <div>
-        <HeaderComponent/>
+          <HeaderComponent/>
           <Context.Provider value={{
               userStore: {
                   allUsers: users,
+                  setFavoriteUser: (obj: IUserModel) => setFavoriteUser(obj)
               },
               postStore: {
                   allPosts: posts,
               }
           }}>
-            <Outlet/>
+              <Outlet/>
           </Context.Provider>
+
+          <hr/>
+          {favoriteUserState && <div>{favoriteUserState.email}</div>}
+          <hr/>
+
       </div>
   );
 };
