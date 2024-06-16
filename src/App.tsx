@@ -44,6 +44,7 @@ const App = () => {
               <Outlet/>
           </Context.Provider>
 
+
           <hr/>
           {favoriteUserState && <div>{favoriteUserState.email}</div>}
           <hr/>
