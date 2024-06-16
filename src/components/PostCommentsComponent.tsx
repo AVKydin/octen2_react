@@ -1,5 +1,5 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import {useStore} from "../context/ContextProvider";
+import {useStore} from "../zustandStore/zustandStore";
 import {IPostWithComponentsType} from "../models/IPostWithComponentsType";
 
 const PostCommentsComponent = () => {

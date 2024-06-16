@@ -1,4 +1,3 @@
-import {createContext, useContext} from "react";
 import {IPostModel} from "../models/IPostModel";
 import {IUserModel} from "../models/IUserModel";
 import {ICommentModel} from "../models/ICommentModel";

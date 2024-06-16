@@ -1,5 +1,5 @@
 import React from 'react';
-import {useStore} from "../context/ContextProvider";
+import {useStore} from "../zustandStore/zustandStore";
 import UserComponent from "./UserComponent";
 
 const UsersComponent = () => {

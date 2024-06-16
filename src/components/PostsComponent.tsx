@@ -1,5 +1,5 @@
 import React from 'react';
-import {useStore} from "../context/ContextProvider";
+import {useStore} from "../zustandStore/zustandStore";
 import PostComponent from "./PostComponent";
 
 const PostsComponent = () => {

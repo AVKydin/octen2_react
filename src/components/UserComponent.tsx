@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {IUserModel} from "../models/IUserModel";
-import {useStore} from "../context/ContextProvider";
+import {useStore} from "../zustandStore/zustandStore";
 
 interface IProps {
     user: IUserModel
