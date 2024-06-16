@@ -1,52 +1,29 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import {Outlet} from "react-router-dom";
 import HeaderComponent from "./components/HeaderComponent";
+import {useStore} from "./context/ContextProvider";
 import {commentService, postService, userService} from "./services/api.service";
-import {Context} from "./context/ContextProvider";
-import {IUserModel} from "./models/IUserModel";
-import {IPostModel} from "./models/IPostModel";
-import {ICommentModel} from "./models/ICommentModel";
+
 
 
 const App = () => {
 
-    const [users, setUsers] = useState<IUserModel[]>([]);
-    const [posts, setPosts] = useState<IPostModel[]>([]);
-    const [comments, setComments] = useState<ICommentModel[]>([]);
-    const [favoriteUserState, setFavoriteUserState] = useState<IUserModel | null>(null)
+    const {userStore, userStore: {favoriteUser}, postStore, commentStore} = useStore()
 
-    useEffect(() => {
-        userService.getUsers().then(user => setUsers(user.data));
-        postService.getUsers().then(post => setPosts(post.data))
-        commentService.getComments().then(comment => setComments(comment.data))
+   useEffect(() => {
+       userService.getUsers().then(value => userStore.loadUsers(value.data));
+       postService.getPosts().then(value => postStore.loadPosts(value.data));
+       commentService.getComments().then(value => commentStore.loadComments(value.data))
     }, []);
 
-    const setFavoriteUser = (obj: IUserModel   ) =>{
-        setFavoriteUserState(obj)
-    }
 
   return (
       <div>
           <HeaderComponent/>
-          <Context.Provider value={{
-              userStore: {
-                  allUsers: users,
-                  setFavoriteUser: (obj: IUserModel) => setFavoriteUser(obj)
-              },
-              postStore: {
-                  allPosts: posts,
-              },
-              commentStore: {
-                  allComments: comments,
-              }
-          }}>
               <Outlet/>
-          </Context.Provider>
-
-
           <hr/>
-          {favoriteUserState && <div>{favoriteUserState.email}</div>}
+          {favoriteUser && <div>{favoriteUser.email}</div>}
           <hr/>
 
       </div>

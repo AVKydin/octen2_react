@@ -14,7 +14,7 @@ const userService = {
     }
 }
 const postService = {
-    getUsers: async (): Promise<AxiosResponse<IPostModel[]>> =>{
+    getPosts: async (): Promise<AxiosResponse<IPostModel[]>> =>{
         return await axiosInstance.get<IPostModel[]>('/posts')
     }
 }

@@ -1,11 +1,11 @@
 import React, {FC} from 'react';
 import {IPostModel} from "../models/IPostModel";
 
-interface Iprops {
+interface IProps {
     post: IPostModel
 }
 
-const PostComponent: FC<Iprops> = ({post}) => {
+const PostComponent: FC<IProps> = ({post}) => {
     return (
         <div>
             <span>{post.id} - {post.title}</span>
